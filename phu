@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="decor.css">
+<link rel="stylesheet" href="decor1.css">
+    <title>Đi cùng văn học</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        header { background-color: #333; color: white; text-align: center; padding: 20px; }
+        nav { background-color: #444; padding: 10px; text-align: center; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; }
+        nav a:hover { text-decoration: underline; }
+        main { padding: 20px; max-width: 1200px; margin: auto; }
+        .sections { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .section-card { background-color: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .section-card:hover { transform: scale(1.05); }
+        .section-card h3 { color: #333; }
+        .section-card p { color: #666; }
+        .section-card a { display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #333; color: white; text-decoration: none; border-radius: 5px; }
+        .section-card a:hover { background-color: #555; }
+        footer { background-color: #333; color: white; text-align: center; padding: 10px; position: fixed; bottom: 0; width: 100%; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Đi cùng văn học</h1>
+        <p>Đi cùng văn học luôn ở đây để chờ bạn khám phá!</p>
+    </header>
+    <nav>
+        <a href="index.html">Bước vào cánh đồng văn học bất tận</a>
+        <a href="about.html">Về chúng tớ</a>
+        <a href="articles.html"></a>
+        <a href="contact.html">Liên kết</a>
+ <a href="https://www.dicungvanhoc.com">Đi cùng văn học</a>
+    </nav>
+    <main>
+        <h2>Đời sống văn học</h2>
+        <p>Dưới đây là các bài viết nhỏ về văn học. Nhấp để đọc chi tiết.</p>
+        <div class="articles">
+            <div class="article-card">
+                <h4>Truyện Kiều của Nguyễn Du</h4>
+                <p>Đoạn Trường Tân Thanh-Sống cuộc đời của nàng Kiều</p>
+                <a href="DTTT-00.html">Đọc bài viết</a>
+            </div>
+            <div class="article-card">
+                <h4>Mãi đừng xa tôi-Kazuo Ishiguro</h4>
+                <p>cuộc đời của những "kẻ nhân bản"</p>
+                <a href="MDXT-01.html">Đọc bài viết</a>
+            </div>
+            <div class="article-card">
+                <h4>Nhà giả kim</h4>
+                <p>Chuyến đi của niềm tin</p>
+                <a href="NGK-02.html">Đọc bài viết</a>
+            </div>
+            <div class="article-card">
+                <h4>Tập thơ "Nhật ký trong tù"</h4>
+                <p>Chuyến hành trình của người cha vĩ đại</p>
+                <a href="TTNKTT.html">Đọc bài viết</a>
+        </div>
+       
+    </main>
+    <footer>
+        <p>&copy; 27/01/2026 Đi cùng văn học. Mong rằng bạn sẽ dừng chân lâu hơn đôi chút.</p>
+    </footer>
+<script>
+    // Hàm load nội dung từ trang khác và thay thế <main>
+    function loadPage(pageUrl) {
+        fetch(pageUrl)
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const newMain = doc.querySelector('main');  // Chỉ lấy <main> từ trang đích
+                if (newMain) {
+                    document.querySelector('main').innerHTML = newMain.innerHTML;  // Thay nội dung <main> hiện tại
+                    // Cập nhật URL mà không reload
+                    history.pushState(null, '', pageUrl);
+                    console.log('Đã load nội dung từ: ' + pageUrl);
+                } else {
+                    console.error('Không tìm thấy <main> trong ' + pageUrl);
+                }
+            })
+            .catch(error => console.error('Lỗi load trang: ', error));
+    }
+
+    // Xử lý click nav
+    document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();  // Ngăn chuyển trang
+                const href = this.getAttribute('href');
+                if (href && href !== window.location.pathname.split('/').pop()) {  // Tránh load lại trang hiện tại
+                    loadPage(href);
+                }
+            });
+        });
+    });
+
+    // Xử lý back/forward button (tùy chọn)
+    window.addEventListener('popstate', function() {
+        // Có thể load lại trang từ URL, nhưng đơn giản hóa bằng reload
+        window.location.reload();
+    });
+ // Hiển thị pop-up khi trang load
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('welcomeModal');
+        modal.style.display = 'block'; // Hiển thị modal
+
+        // Đóng modal khi click nút đóng
+        const closeBtn = document.querySelector('.close-btn');
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Đóng modal khi click nút "Bắt đầu"
+        const cuteBtn = document.querySelector('.cute-btn');
+        cuteBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Đóng modal khi click ngoài modal (tùy chọn)
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Tùy chọn: Hiển thị thêm pop-up ngẫu nhiên sau 5 giây (cho "một vài pop-up")
+        setTimeout(function() {
+            if (Math.random() > 0.5) { // 50% cơ hội
+                alert('💖 Tip: Khám phá bài viết về Truyện Kiều nhé!'); // Pop-up đơn giản
+            }
+        }, 5000);
+    });
+</script>
+</body>
+</htm>
