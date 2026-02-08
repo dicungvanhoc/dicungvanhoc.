@@ -1,0 +1,417 @@
+/* Reset cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/* Body: Nền gradient xanh hồng pastel dễ thương, với bong bóng, mây, bông tuyết và trái tim bay */
+body {
+    font-family: 'Quicksand', sans-serif; /* Phông chữ dễ thương, mềm mại */
+    background: linear-gradient(135deg, #AEDFF7 0%, #FFB6C1 50%, #87CEEB 100%); /* Pastel xanh hồng mơ màng */
+    color: #5D4E60; /* Màu chữ ấm áp */
+    line-height: 1.8; /* Spacing dễ đọc */
+    position: relative;
+    overflow-x: hidden;
+    animation: dreamyFade 2s ease-in;
+}
+
+/* Animation fade-in mộng mơ */
+@keyframes dreamyFade {
+    from { opacity: 0; filter: blur(5px); }
+    to { opacity: 1; filter: blur(0); }
+}
+
+/* Bong bóng xà phòng bay (giữ nguyên nhưng pastel hơn) */
+body::before, body::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 182, 193, 0.5) 50%, transparent 100%);
+    border-radius: 50%;
+    animation: floatBubble 10s infinite linear;
+    pointer-events: none;
+}
+
+body::before {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+body::after {
+    top: 60%;
+    right: 15%;
+    width: 35px;
+    height: 35px;
+    animation-delay: 5s;
+}
+
+body::before::before {
+    content: '';
+    position: absolute;
+    top: 80%;
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(135, 206, 235, 0.4) 50%, transparent 100%);
+    border-radius: 50%;
+    animation: floatBubble 12s infinite linear reverse;
+    animation-delay: 3s;
+}
+
+@keyframes floatBubble {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Mây dễ thương (clouds) - nhiều đám, trôi chậm, hình dạng mềm mại */
+.cloud1, .cloud2, .cloud3 {
+    position: absolute;
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.95) 0%, rgba(255, 182, 193, 0.7) 50%, rgba(174, 223, 247, 0.5) 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: driftCloud 30s infinite linear;
+}
+
+.cloud1 {
+    top: 10%;
+    left: -200px;
+    width: 200px;
+    height: 110px;
+    animation-delay: 0s;
+}
+
+.cloud2 {
+    top: 30%;
+    left: -300px;
+    width: 170px;
+    height: 90px;
+    animation-delay: 10s;
+}
+
+.cloud3 {
+    top: 50%;
+    left: -250px;
+    width: 220px;
+    height: 130px;
+    animation-delay: 20s;
+}
+
+.cloud1::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 110px;
+    height: 65px;
+    background: inherit;
+    border-radius: 50%;
+}
+
+@keyframes driftCloud {
+    0% { transform: translateX(-200px); }
+    100% { transform: translateX(calc(100vw + 200px)); }
+}
+
+/* Bông tuyết bay (snowflakes) - rơi chậm, dễ thương */
+.snowflake1, .snowflake2, .snowflake3, .snowflake4, .snowflake5 {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.8em;
+    pointer-events: none;
+    animation: fallSnow 20s infinite linear;
+}
+
+.snowflake1 { content: '❄'; top: -10%; left: 10%; animation-delay: 0s; }
+.snowflake2 { content: '❄'; top: -10%; left: 30%; animation-delay: 4s; }
+.snowflake3 { content: '❄'; top: -10%; left: 50%; animation-delay: 8s; }
+.snowflake4 { content: '❄'; top: -10%; left: 70%; animation-delay: 12s; }
+.snowflake5 { content: '❄'; top: -10%; left: 90%; animation-delay: 16s; }
+
+@keyframes fallSnow {
+    0% { transform: translateY(-100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Trái tim bay nhẹ (thêm chi tiết dễ thương) */
+.heart1, .heart2 {
+    position: absolute;
+    color: rgba(255, 105, 180, 0.6);
+    font-size: 1.5em;
+    pointer-events: none;
+    animation: floatHeart 15s infinite linear;
+}
+
+.heart1 { content: '💖'; top: 40%; left: 5%; animation-delay: 2s; }
+.heart2 { content: '💖'; top: 70%; right: 10%; animation-delay: 7s; }
+
+@keyframes floatHeart {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-50px) rotate(180deg); opacity: 0; }
+}
+
+/* Header: Gradient hồng xanh dễ thương với icon hoa */
+header {
+    background: linear-gradient(45deg, #FFB6C1 0%, #AEDFF7 50%, #FFC0CB 100%); /* Pastel hồng xanh */
+    color: #FFFFFF;
+    text-align: center;
+    padding: 50px 20px;
+    box-shadow: 0 8px 20px rgba(255, 182, 193, 0.5); /* Glow hồng nhẹ */
+    position: relative;
+    z-index: 2;
+    border-radius: 0 0 50px 50px; /* Bo góc dưới dễ thương */
+}
+
+header h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 2.8em;
+    font-weight: 700;
+    animation: gentleBounce 4s infinite;
+}
+
+header::before {
+    content: '🌸🦄'; /* Icons hoa và unicorn dễ thương */
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 2em;
+    opacity: 0.8;
+}
+
+@keyframes gentleBounce {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.05) translateY(-5px); }
+}
+
+/* Nav: Nút menu hồng xanh với bounce nhẹ */
+nav {
+    background-color: #F8C8DC; /* Hồng pastel */
+    padding: 25px;
+    text-align: center;
+    border-bottom: 4px solid #AEDFF7; /* Viền xanh */
+    border-radius: 0 0 30px 30px; /* Bo góc dưới */
+}
+
+nav a {
+    color: #D81B60; /* Hồng đậm dễ thương */
+    margin: 0 30px;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 15px 25px;
+    border-radius: 50px; /* Bo tròn */
+    background: linear-gradient(45deg, #FFB6C1 0%, #F8C8DC 100%);
+    transition: all 0.5s ease;
+    box-shadow: 0 4px 10px rgba(255, 182, 193, 0.3);
+    position: relative;
+}
+
+nav a::before {
+    content: '✨'; /* Sparkle dễ thương */
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 0.8em;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+nav a:hover::before {
+    opacity: 1;
+}
+
+nav a:hover {
+    background: linear-gradient(45deg, #FFC0CB 0%, #AEDFF7 100%);
+    color: #FFFFFF;
+    transform: translateY(-5px); /* Bounce nhẹ */
+    box-shadow: 0 8px 20px rgba(255, 182, 193, 0.5);
+}
+
+/* Main: Background hồng xanh dễ thương với pattern hoa nhỏ */
+main {
+    padding: 50px;
+    max-width: 1200px;
+    margin: 40px auto;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 200, 220, 0.9) 100%);
+    border-radius: 40px; /* Bo góc lớn dễ thương */
+    box-shadow: 0 10px 30px rgba(174, 223, 247, 0.4); /* Glow xanh nhẹ */
+    position: relative;
+    z-index: 2;
+    animation: slideDream 1.5s ease-out;
+    background-image: radial-gradient(circle at 20% 80%, rgba(255, 192, 203, 0.1) 0%, transparent 50%), 
+                      radial-gradient(circle at 80% 20%, rgba(174, 223, 247, 0.1) 0%, transparent 50%); /* Pattern hoa nhỏ */
+}
+
+@keyframes slideDream {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Sections và Articles: Cards hồng xanh dễ thương với icons */
+.sections, .articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.section-card, .article-card {
+    background: linear-gradient(135deg, #FCE4EC 0%, #E6F7FF 100%); /* Pastel hồng xanh */
+    border: 3px solid #FFB6C1; /* Viền hồng */
+    border-radius: 30px; /* Bo góc lớn */
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(255, 182, 193, 0.3);
+    transition: all 0.6s ease;
+    position: relative;
+}
+
+.section-card::after, .article-card::after {
+    content: '🌸'; /* Icon hoa cố định */
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5em;
+    opacity: 0.8;
+    animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.8; transform: scale(1) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.1) rotate(10deg); }
+}
+
+.section-card:hover, .article-card:hover {
+    transform: translateY(-10px); /* Bounce nhẹ */
+    box-shadow: 0 15px 40px rgba(255, 182, 193, 0.5); /* Glow hồng mạnh */
+    background: linear-gradient(135deg, #FFC0CB 0%, #AEDFF7 100%);
+    color: #FFFFFF;
+}
+
+.section-card h3, .article-card h4 {
+    color: #D81B60;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    font-weight: 700;
+}
+
+.section-card p, .article-card p {
+    color: #7B6F7A;
+    font-weight: 400;
+}
+
+/* Buttons/Links: Hồng xanh dễ thương với bounce */
+.section-card a, .article-card a {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 18px 30px;
+    background: linear-gradient(45deg, #FFB6C1 0%, #FFC0CB 100%);
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 50px; /* Bo tròn */
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(255, 182, 193, 0.4);
+    transition: all 0.5s ease;
+    position: relative;
+}
+
+.section-card a::before, .article-card a::before {
+    content: '💖'; /* Icon trái tim */
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    font-size: 1em;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.section-card a:hover::before, .article-card a:hover::before {
+    opacity: 1;
+}
+
+.section-card a:hover, .article-card a:hover {
+    background: linear-gradient(45deg, #AEDFF7 0%, #87CEEB 100%);
+    transform: translateY(-5px); /* Bounce nhẹ */
+    box-shadow: 0 10px 25px rgba(174, 223, 247, 0.6);
+}
+
+/* Footer: Gradient hồng xanh dễ thương */
+footer {
+    background: linear-gradient(45deg, #FFB6C1 0%, #AEDFF7 50%, #FFC0CB 100%);
+    color: #FFFFFF;
+    text-align: center;
+    padding: 25px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 15px rgba(255, 182, 193, 0.3);
+    border-radius: 50px 50px 0 0; /* Bo góc trên */
+}
+
+/* Responsive: Điều chỉnh cho mobile */
+@media (max-width: 768px) {
+    main {
+        padding: 30px;
+        margin: 20px;
+    }
+    nav a {
+        margin: 0 20px;
+        padding: 12px 20px;
+    }
+    .sections, .articles {
+        grid-template-columns: 1fr;
+    }
+    .section-card, .article-card {
+        padding: 25px;
+    }
+    /* Mây, bông tuyết, trái tim nhỏ hơn trên mobile */
+    .cloud1, .cloud2, .cloud3 {
+        width: 150px;
+        height: 80px;
+    }
+    .snowflake1, .snowflake2, .snowflake3, .snowflake4, .snowflake5 {
+        font-size: 1.2em;
+    }
+    .heart1, .heart2 {
+        font-size: 1.2em;
+    }
+}
+
+/* Form: Giữ nguyên với màu hồng xanh dễ thương */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: auto;
+}
+
+input, textarea {
+    margin: 20px 0;
+    padding: 18px;
+    border: 3px solid #FFB6C1;
+    border-radius: 25px; /* Bo góc dễ thương */
+    background: linear-gradient(135deg, #FFFFFF 0%, #FCE4EC 100%);
+    transition: border-color 0.4s;
+    font-family: 'Quicksand', sans-serif;
+}
+
+input:focus, textarea:focus {
+    border-color: #AEDFF7;
+    box-shadow: 0 0 15px rgba(174, 223, 247, 0.6);
+}
+
+button {
